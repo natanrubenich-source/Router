@@ -12,8 +12,9 @@ export async function listarContatos(){
 export async function buscarContatoID(id){
     const ContatoID = await pool.query(`SELECT * FROM contatos WHERE id=${id};`);
     return ContatoID.rows;
+    
 }
 
 export function cadastrarContato(nome, telefone, email){
-    
+
 }
