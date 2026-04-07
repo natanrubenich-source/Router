@@ -16,14 +16,16 @@ export async function buscarPorID (req, res){
     }
 }
 
-export function criarContato(req, res){
+export async function criarContato(req, res){
     //id, nome, telefone e email.
+    console.log("Body recebido:", req.body);
     const {nome, telefone, email} = req.body;
 
     if (!nome || !telefone || !email){
         res.status(422).json({ mensagem: "Dados incompletos!"})
     }else{
-        const novoContato = module.cadastrarContato(nome,telefone,email);
+
+        const novoContato = await module.cadastrarContato(nome,telefone,email);
         res.status(201).json(novoContato);
     }
 }

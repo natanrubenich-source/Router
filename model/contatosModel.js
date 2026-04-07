@@ -12,9 +12,20 @@ export async function listarContatos(){
 export async function buscarContatoID(id){
     const ContatoID = await pool.query(`SELECT * FROM contatos WHERE id=${id};`);
     return ContatoID.rows;
-    
+
 }
 
-export function cadastrarContato(nome, telefone, email){
+export async function cadastrarContato(nome, telefone, email){
 
+    try {
+
+    const novoContato = await pool.query(
+    "INSERT INTO contatos (nome, telefone, email) VALUES ($1, $2, $3) RETURNING *",[nome, telefone, email]);
+    return novoContato.rows[0];
+
+    } catch (error) {
+        console.log("Erro ao inserir no banco de dados: ", error);
+        return error
+    }
+    
 }
