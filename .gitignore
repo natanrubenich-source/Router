@@ -3,3 +3,7 @@
 /router/node_module
 
 /controller/node_module
+
+
+# variáveis de ambiente — NUNCA enviar ao Git
+.env

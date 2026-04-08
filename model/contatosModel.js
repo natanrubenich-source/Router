@@ -16,16 +16,14 @@ export async function buscarContatoID(id){
 }
 
 export async function cadastrarContato(nome, telefone, email){
-
     try {
-
+    // Inseriu os dados no Banco de dados
     const novoContato = await pool.query(
     "INSERT INTO contatos (nome, telefone, email) VALUES ($1, $2, $3) RETURNING *",[nome, telefone, email]);
     return novoContato.rows[0];
-
+    
     } catch (error) {
         console.log("Erro ao inserir no banco de dados: ", error);
         return error
     }
-    
 }
